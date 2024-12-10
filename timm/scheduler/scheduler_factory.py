@@ -141,6 +141,7 @@ def create_scheduler_v2(
             **noise_args,
             k_decay=k_decay,
         )
+        print('启用cosine')
     elif sched == 'tanh':
         lr_scheduler = TanhLRScheduler(
             optimizer,
@@ -150,7 +151,8 @@ def create_scheduler_v2(
             **cycle_args,
             **warmup_args,
             **noise_args,
-        )
+            )
+        print('启用tanh')
     elif sched == 'step':
         lr_scheduler = StepLRScheduler(
             optimizer,
@@ -160,6 +162,7 @@ def create_scheduler_v2(
             **warmup_args,
             **noise_args,
         )
+        print('启用step')
     elif sched == 'multistep':
         lr_scheduler = MultiStepLRScheduler(
             optimizer,
@@ -169,6 +172,7 @@ def create_scheduler_v2(
             **warmup_args,
             **noise_args,
         )
+        print('启用multistep')
     elif sched == 'plateau':
         assert step_on_epochs, 'Plateau LR only supports step per epoch.'
         warmup_args.pop('warmup_prefix', False)
@@ -182,6 +186,7 @@ def create_scheduler_v2(
             mode=plateau_mode,
             **noise_args,
         )
+        print('启用plateau')
     elif sched == 'poly':
         lr_scheduler = PolyLRScheduler(
             optimizer,
@@ -194,6 +199,7 @@ def create_scheduler_v2(
             **warmup_args,
             **noise_args,
         )
+        print('启用poly')
 
     if hasattr(lr_scheduler, 'get_cycle_length'):
         # for cycle based schedulers (cosine, tanh, poly) recalculate total epochs w/ cycles & cooldown

@@ -165,7 +165,7 @@ class IterableImageDataset(data.IterableDataset):
 class AugMixDataset(torch.utils.data.Dataset):
     """Dataset wrapper to perform AugMix or other clean/augmentation mixes"""
 
-    def __init__(self, dataset, num_splits=2):
+    def __init__(self, dataset: object, num_splits: object = 2) -> object:
         self.augmentation = None
         self.normalize = None
         self.dataset = dataset
